@@ -188,11 +188,11 @@ exports.resetPassword = async (req, res) => {
   });
 };
 exports.changeUsername = async (req, res) => {
-  const { email, password, newUsername } = req.body;
+  const { email, newUsername } = req.body;
 
-  if (!email || !password || !newUsername) {
+  if (!email || !newUsername) {
     return res.status(401).json({
-      message: "Please provide your email, password and newUsername",
+      message: "Please provide your email and newUsername",
     });
   }
 
@@ -204,44 +204,36 @@ exports.changeUsername = async (req, res) => {
     });
   }
 
-  const isMatch = bcrypt.compareSync(password, userExist[0].userPassword);
-
-  if (isMatch) {
-    res.status(200).json({
-      message: "Username changed succesfully!",
-    });
-    userExist[0].userName = newUsername;
-    userExist[0].save();
-  } else {
-    res.status(400).json({
-      message: "Invalid Password! You cannot change the userName.",
-    });
-  }
+  res.status(200).json({
+    message: "Username changed succesfully!",
+  });
+  userExist[0].userName = newUsername;
+  userExist[0].save();
 };
 
-exports.deleteUserProfile = async (req, res) => {
-  const { email, password } = req.body;
+// exports.deleteUserProfile = async (req, res) => {
+//   const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(401).json({
-      message: "Please provide your email, password",
-    });
-  }
+//   if (!email || !password) {
+//     return res.status(401).json({
+//       message: "Please provide your email, password",
+//     });
+//   }
 
-  const userExist = await User.find({ userEmail: email });
+//   const userExist = await User.find({ userEmail: email });
 
-  if (userExist.length == 0) {
-    return res.status(404).json({
-      message: "User with that email doesnot exist",
-    });
-  }
+//   if (userExist.length == 0) {
+//     return res.status(404).json({
+//       message: "User with that email doesnot exist",
+//     });
+//   }
 
-  const isMatch = bcrypt.compareSync(password, userExist[0].userPassword);
+//   const isMatch = bcrypt.compareSync(password, userExist[0].userPassword);
 
-  if (isMatch) {
-    res.status(200).json({
-      message: "User Deleted succesfully!",
-    });
-    await User.deleteOne({ userEmail: email });
-  }
-};
+//   if (isMatch) {
+//     res.status(200).json({
+//       message: "User Deleted succesfully!",
+//     });
+//     await User.deleteOne({ userEmail: email });
+//   }
+// };

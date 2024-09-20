@@ -17,6 +17,6 @@ router.route("/forgotpassword").post(catchAsync(forgotPassword));
 router.route("/verifyotp").post(catchAsync(verifyOtp));
 router.route("/resetpassword").post(catchAsync(resetPassword));
 router.route("/changeusername").patch(catchAsync(changeUsername));
-router.route("/deleteuser").delete(catchAsync(deleteUserProfile));
+// router.route("/deleteuser").delete(catchAsync(deleteUserProfile));
 
 module.exports = router;
