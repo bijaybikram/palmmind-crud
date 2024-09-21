@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // login handled here
   $("#loginForm").on("submit", async function (e) {
     e.preventDefault();
     const email = $("#email").val();
@@ -22,7 +23,7 @@ $(document).ready(function () {
     }
   });
 
-  //   forgot password
+  //   forgot password handled here
   $("#forgotPasswordForm").on("submit", async function (e) {
     e.preventDefault();
     const email = $("#email").val();
@@ -35,14 +36,12 @@ $(document).ready(function () {
         }
       );
       window.location.href = "verifyOtp.html";
-
-      //   return loadUsers();
     } catch (error) {
       console.log(error);
     }
   });
 
-  //   verify otp form
+  //   verify otp form handled here
   $("#verifyOtpForm").on("submit", async function (e) {
     e.preventDefault();
     const email = $("#email").val();
@@ -57,14 +56,12 @@ $(document).ready(function () {
         }
       );
       window.location.href = "resetPassword.html";
-
-      //   return loadUsers();
     } catch (error) {
       console.log(error);
     }
   });
 
-  //   reset password
+  //   reset password handled here
   $("#resetPasswordForm").on("submit", async function (e) {
     e.preventDefault();
     const email = $("#email").val();
@@ -81,8 +78,6 @@ $(document).ready(function () {
         }
       );
       window.location.href = "login.html";
-
-      //   return loadUsers();
     } catch (error) {
       console.log(error);
     }

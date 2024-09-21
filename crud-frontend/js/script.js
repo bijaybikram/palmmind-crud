@@ -6,7 +6,6 @@ $(document).ready(function () {
       const response = await axios.get("http://localhost:5000/api/users");
       const users = response.data.data;
 
-      console.log(response);
       $("#usersTable tbody").empty();
       users.forEach((user) => {
         $("#usersTable tbody").append(`
@@ -56,8 +55,6 @@ $(document).ready(function () {
     window.location.href = "changeName.html";
   });
 
-  loadUsers();
-
   // change username on changenamebtn click event
   $("#changeUsernameForm").on("submit", async function (e) {
     e.preventDefault();
@@ -75,5 +72,5 @@ $(document).ready(function () {
     }
   });
 
-  // loadUsers(); // Load users on page load
+  loadUsers(); // Load users on page load
 });
